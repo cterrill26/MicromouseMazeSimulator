@@ -155,8 +155,6 @@ public:
 
 		updateWalls(x, y, maze.wallInFront(), maze.wallOnLeft(), maze.wallOnRight());
 
-	chooseDir:
-
 		int curDist = dist[x][y];
 
 		if (y < MazeDefinitions::MAZE_LEN - 1 && !horzWalls[x][y] && dist[x][y + 1] < curDist)
@@ -168,7 +166,7 @@ public:
 		if (x > 0 && !vertWalls[x - 1][y] && dist[x - 1][y] < curDist)
 			return moveDir(3);
 		if (floodFill(x, y))
-			goto chooseDir;
+			return Wait;
 
 		// If we get stuck somehow, just terminate.
 		std::cout << "Got stuck..." << std::endl;
